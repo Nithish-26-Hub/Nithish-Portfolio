@@ -1,22 +1,43 @@
-// Import the Express module
-const express = require('express');
-const path = require('path');
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
 
-// Initialize the Express app
-const app = express();
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-// Define the port for the server
-const PORT = process.env.PORT || 3000;
+    // Simple validation
+    if (name === '' || email === '' || message === '') {
+        alert('Please fill in all fields.');
+    } else if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+    } else {
+        // Prepare data to send
+        const data = {
+            name: name,
+            email: email,
+            message: message
+        };
 
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Define a route for the home page
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Start the server and listen on the specified port
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+        // Send the data to your backend server
+        fetch('http://localhost:5000/send-email', { // Replace with your server URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Email sent successfully!');
+                document.getElementById('contactForm').reset(); // Reset form after successful submission
+            } else {
+                alert('Error sending email.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error sending email.');
+        });
+    }
 });
