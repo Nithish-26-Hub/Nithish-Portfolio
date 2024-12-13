@@ -373,23 +373,23 @@ body {
 }
 
 .progress-line.html span::after {
-    content: "50%";
+    content: "";
 }
 
 .progress-line.css span::after {
-    content: "40%";
+    content: "";
 }
 
 .progress-line.figma span::after {
-    content: "50%";
+    content: "";
 }
 
 .progress-line.js span::after {
-    content: "35%";
+    content: "";
 }
 
 .progress-line.python span::after {
-    content: "30%";
+    content: "";
 }
 
 .progress-line span::before {
