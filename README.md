@@ -5,12 +5,6 @@ This responsive and interactive site showcases my journey, skills, projects, edu
 
 ---
 
-## 🚀 Live Demo
-
-🌍 [Check It Out Here]([https://your-portfolio-live-link.com](https://nithish-jayaprakash.netlify.app))
-
----
-
 ## 📌 Features
 
 🔹 **Sticky Navigation Bar** – Smooth scroll & responsive layout
